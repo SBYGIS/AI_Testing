@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fire Service Planning — AI Assistant</title>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.32/esri/themes/light/main.css" />
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #f4f4f4;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: #004676;
+      color: #fff;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    header h1 {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    header span.sub {
+      font-size: 0.75rem;
+      opacity: 0.7;
+      margin-left: auto;
+    }
+
+    #app {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    #map-container {
+      flex: 1;
+      position: relative;
+    }
+
+    arcgis-map {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    arcgis-search {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      z-index: 10;
+      width: 300px;
+    }
+
+    #chat-panel {
+      width: 360px;
+      flex-shrink: 0;
+      background: #fff;
+      border-left: 1px solid #ddd;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    #chat-header {
+      background: #005e9c;
+      color: #fff;
+      padding: 12px 16px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      flex-shrink: 0;
+    }
+
+    #chat-header p {
+      font-size: 0.7rem;
+      font-weight: 400;
+      opacity: 0.8;
+      margin-top: 3px;
+    }
+
+    arcgis-assistant {
+      flex: 1;
+      overflow: hidden;
+    }
+
+    @media (max-width: 700px) {
+      #app { flex-direction: column; }
+      #chat-panel { width: 100%; height: 40vh; border-left: none; border-top: 1px solid #ddd; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+      <circle cx="12" cy="9" r="2.5"/>
+    </svg>
+    <h1>Fire Service Planning Map</h1>
+    <span class="sub">City of Salisbury</span>
+  </header>
+
+  <div id="app">
+    <div id="map-container">
+      <arcgis-map id="the-map" item-id="bfecd0b820304372b70aaaeac15338c2"></arcgis-map>
+      <arcgis-search reference-element="the-map" placeholder="Search address or place..."></arcgis-search>
+    </div>
+
+    <div id="chat-panel">
+      <div id="chat-header">
+        AI Assistant
+        <p>Ask questions about hydrants, fire districts, and parcels</p>
+      </div>
+      <arcgis-assistant reference-element="the-map">
+        <arcgis-navigation-agent></arcgis-navigation-agent>
+        <arcgis-data-exploration-agent></arcgis-data-exploration-agent>
+        <arcgis-help-agent></arcgis-help-agent>
+      </arcgis-assistant>
+    </div>
+  </div>
+
+  <script type="module" src="https://js.arcgis.com/map-components/4.32/arcgis-map-components.esm.js"></script>
+  <script type="module" src="https://js.arcgis.com/ai-components/4.32/arcgis-ai-components.esm.js"></script>
+
+</body>
+</html>
