@@ -125,10 +125,12 @@
         AI Assistant
         <p>Ask questions about hydrants, fire districts, and parcels</p>
       </div>
-      <arcgis-assistant reference-element="the-map">
-        <arcgis-navigation-agent></arcgis-navigation-agent>
-        <arcgis-data-exploration-agent></arcgis-data-exploration-agent>
-        <arcgis-help-agent></arcgis-help-agent>
+      <arcgis-assistant
+        reference-element="the-map"
+        entry-message="Ask me about fire hydrants, fire service districts, or parcels. Try: 'How many hydrants are in District 16?' or 'Show me all hydrants within 500 feet of a parcel.'">
+        <arcgis-assistant-navigation-agent></arcgis-assistant-navigation-agent>
+        <arcgis-assistant-data-exploration-agent></arcgis-assistant-data-exploration-agent>
+        <arcgis-assistant-help-agent></arcgis-assistant-help-agent>
       </arcgis-assistant>
     </div>
   </div>
